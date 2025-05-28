@@ -26,7 +26,7 @@ func (t *Training) Parse(datastring string) (err error) {
 		return errors.New("invalid format string data: expected 3 parts")
 	}
 
-	steps, err := strconv.Atoi(strings.TrimSpace(parts[0]))
+	steps, err := strconv.Atoi(parts[0])
 	if err != nil {
 		return fmt.Errorf("step conversion error: %s", err)
 	}
@@ -36,15 +36,9 @@ func (t *Training) Parse(datastring string) (err error) {
 	}
 	t.Steps = steps
 
-	// if strings.TrimSpace(parts[1]) != "Бег" || strings.TrimSpace(parts[1]) != "Ходьба" {
-	// 	return errors.New("unknow type training. Must be 'Бег' or 'Ходьба'")
-	// } else {
-	// 	t.TrainingType = strings.TrimSpace(parts[1])
-	// }
+	t.TrainingType = parts[1]
 
-	t.TrainingType = strings.TrimSpace(parts[1])
-
-	duration, err := time.ParseDuration(strings.TrimSpace(parts[2]))
+	duration, err := time.ParseDuration(parts[2])
 	if err != nil {
 		return fmt.Errorf("duration conversion error: %s", err)
 	}

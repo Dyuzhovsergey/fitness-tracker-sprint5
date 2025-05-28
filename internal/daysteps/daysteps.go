@@ -25,7 +25,7 @@ func (ds *DaySteps) Parse(datastring string) (err error) {
 		return errors.New("invalid format string data: expected 2 parts")
 	}
 
-	steps, err := strconv.Atoi(strings.TrimSpace(parts[0]))
+	steps, err := strconv.Atoi(parts[0])
 	if err != nil {
 		return fmt.Errorf("step conversion error: %s", err)
 	}
@@ -35,7 +35,7 @@ func (ds *DaySteps) Parse(datastring string) (err error) {
 	}
 	ds.Steps = steps
 
-	duration, err := time.ParseDuration(strings.TrimSpace(parts[1]))
+	duration, err := time.ParseDuration(parts[1])
 	if err != nil {
 		return fmt.Errorf("duration conversion error: %s", err)
 	}
